@@ -5,7 +5,7 @@ function Buttons() {
 
   const [isPressed, setIsPressed] = useState(null)
 
-  const audio = new Audio('../public/assets/Sound/sound.wav')
+  const audio = new Audio('../assets/Sound/sound.wav')
 
   const imagesBtn = [
     "btn-c.png",

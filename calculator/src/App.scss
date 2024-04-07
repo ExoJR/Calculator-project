@@ -18,6 +18,50 @@ body {
   @include Centered;
 }
 
+#root{
+  width: 100%;
+  height: 100%;
+  @include Centered;
+  flex-direction: column;
+  position: relative;
+
+
+
+header{
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-right: 50px;
+  position: absolute;
+  top:0;
+  left:0;
+  padding: 15px;
+
+
+#box-volume{
+  display: flex;
+  row-gap: 15px;
+  flex-direction:column;
+}
+
+  .box-btn-input-volume{
+   display: flex;
+   justify-content: end;
+}
+
+
+  .btn-volume{
+    width: 49px;
+    height: 39px;
+    background: url('../assets/audio-ico.png');
+    border: none;
+  }
+}
+
+
+}
+
 ul,
 ol {
   list-style: none;
