@@ -5,6 +5,8 @@ function Buttons() {
 
   const [isPressed, setIsPressed] = useState(null)
 
+  const audio = new Audio('../public/assets/Sound/sound.wav')
+
   const imagesBtn = [
     "btn-c.png",
     "btn-ce.png",
@@ -30,6 +32,7 @@ function Buttons() {
 
   const handleMouseDown = (index) =>{
     setIsPressed(index)
+    audio.play()
   };
 
   const handleMouseUp = () =>{
