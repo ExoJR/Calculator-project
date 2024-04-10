@@ -1,11 +1,8 @@
 import { useState } from "react";
+import audio from "../utils/audio.js";
 
-
-function Buttons() {
-
-  const [isPressed, setIsPressed] = useState(null)
-
-  const audio = new Audio('../assets/Sound/sound.wav')
+function Buttons({ buttonsSound ,volumeLevel}) {
+  const [isPressed, setIsPressed] = useState(null);
 
   const imagesBtn = [
     "btn-c.png",
@@ -30,13 +27,16 @@ function Buttons() {
     "btn-equal.png",
   ];
 
-  const handleMouseDown = (index) =>{
-    setIsPressed(index)
-    audio.play()
+  const handleMouseDown = (index) => {
+    setIsPressed(index);
+    if(buttonsSound){
+      audio.volume = volumeLevel/100
+      audio.play()
+    };
   };
 
-  const handleMouseUp = () =>{
-    setIsPressed(null)
+  const handleMouseUp = () => {
+    setIsPressed(null);
   };
 
   return (
@@ -49,8 +49,8 @@ function Buttons() {
           style={{
             background: `url(/assets/${image})`,
             backgroundRepeat: "no-repeat",
-            backgroundSize:"108px 48px",
-            backgroundPosition:  isPressed === index ? '-54px 0px' : "0px 0px",
+            backgroundSize: "108px 48px",
+            backgroundPosition: isPressed === index ? "-54px 0px" : "0px 0px",
           }}
           onMouseDown={() => handleMouseDown(index)}
           onMouseUp={handleMouseUp}

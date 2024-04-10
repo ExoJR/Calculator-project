@@ -52,10 +52,27 @@ header{
 
 
   .btn-volume{
-    width: 49px;
+    width: 48px;
     height: 39px;
     background: url('../assets/audio-ico.png');
     border: none;
+    cursor: pointer;
+  }
+
+  .btn-volume.normal-pressed{
+    background-position: -48px 0px;
+  }
+
+  .btn-volume.mute{
+    background-position: 96px 0px;
+  }
+
+  .btn-volume.mute-pressed{
+    background-position: 48px 0px;
+  }
+
+  .btn-volume.normal{
+    background-position: 0px 0px;
   }
 }
 
