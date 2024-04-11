@@ -1,8 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import audio from "../utils/audio";
 
-function Volume({ onToggleSound, buttonsSound,volumeLevel,onVolumeChange }) {
+function Volume({ onToggleSound, buttonsSound, volumeLevel, onVolumeChange, setVolumeLevel , setBtnSound}) {
   const [stateBtn, setStateBtn] = useState("normal");
+
+
+  useEffect(() => {
+    if (volumeLevel < 1) {
+      setStateBtn("mute");
+    } else if(volumeLevel > 1) {
+      setStateBtn("normal");
+    }
+  }, [volumeLevel]);
+
 
   const handleMouseDown = () => {
     if (stateBtn === "mute") {
@@ -10,7 +20,7 @@ function Volume({ onToggleSound, buttonsSound,volumeLevel,onVolumeChange }) {
     } else {
       setStateBtn("normal-pressed");
     }
-    buttonsSound && audio.play() ;
+    buttonsSound && audio.play();
   };
 
   const handleMouseUp = () => {
@@ -29,9 +39,6 @@ function Volume({ onToggleSound, buttonsSound,volumeLevel,onVolumeChange }) {
     }
   };
 
- 
-
-
   return (
     <div id="box-volume">
       <div className="box-btn-input-volume">
@@ -46,7 +53,18 @@ function Volume({ onToggleSound, buttonsSound,volumeLevel,onVolumeChange }) {
         ></button>
       </div>
       <div className="box-btn-input-volume">
-        <input className="input-volume" type="range" value={volumeLevel} min={0} max={100} onChange={onVolumeChange}/>
+        <img src="./assets/volume-bar.svg" alt="volume-bar" />
+        <div className="volume-shape">
+          <input
+            className="input-volume"
+            type="range"
+            value={volumeLevel}
+            min={0}
+            max={100}
+            onChange={onVolumeChange}
+            style={{ backgroundSize: volumeLevel + "%" }}
+          />
+        </div>
       </div>
     </div>
   );

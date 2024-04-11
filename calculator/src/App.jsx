@@ -21,7 +21,7 @@ function App() {
   return (
     <>
       <header>
-        <Volume onToggleSound={toggleSound} buttonsSound={btnSound} volumeLevel={volumeLevel} onVolumeChange={handleVolumeChange} />
+        <Volume onToggleSound={toggleSound} buttonsSound={btnSound} volumeLevel={volumeLevel} onVolumeChange={handleVolumeChange} setVolumeLevel={setVolumeLevel} setBtnSound={setBtnSound}/>
       </header>
       <main>
         <div id="calculator-wrapper">

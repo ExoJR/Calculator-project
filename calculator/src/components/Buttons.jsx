@@ -32,6 +32,7 @@ function Buttons({ buttonsSound ,volumeLevel}) {
     if(buttonsSound){
       audio.volume = volumeLevel/100
       audio.play()
+      console.log(buttonsSound)
     };
   };
 
