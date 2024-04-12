@@ -29,10 +29,10 @@ function Buttons({ buttonsSound ,volumeLevel}) {
 
   const handleMouseDown = (index) => {
     setIsPressed(index);
-    if(buttonsSound){
+    if(buttonsSound && volumeLevel > 1){
       audio.volume = volumeLevel/100
       audio.play()
-      console.log(buttonsSound)
+     
     };
   };
 

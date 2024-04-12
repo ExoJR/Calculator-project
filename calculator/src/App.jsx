@@ -8,20 +8,26 @@ function App() {
   const [btnSound, setBtnSound] = useState(true);
   const [volumeLevel, setVolumeLevel] = useState(50);
 
-
   const toggleSound = () => {
     setBtnSound((prevState) => !prevState);
   };
 
-  const handleVolumeChange = event => {
+  const handleVolumeChange = (event) => {
     setVolumeLevel(event.target.value);
-   
+    setBtnSound(true);
   };
 
   return (
     <>
       <header>
-        <Volume onToggleSound={toggleSound} buttonsSound={btnSound} volumeLevel={volumeLevel} onVolumeChange={handleVolumeChange} setVolumeLevel={setVolumeLevel} setBtnSound={setBtnSound}/>
+        <Volume
+          onToggleSound={toggleSound}
+          buttonsSound={btnSound}
+          volumeLevel={volumeLevel}
+          onVolumeChange={handleVolumeChange}
+          setVolumeLevel={setVolumeLevel}
+          setBtnSound={setBtnSound}
+        />
       </header>
       <main>
         <div id="calculator-wrapper">

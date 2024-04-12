@@ -1,18 +1,24 @@
 import { useState, useEffect } from "react";
 import audio from "../utils/audio";
 
-function Volume({ onToggleSound, buttonsSound, volumeLevel, onVolumeChange, setVolumeLevel , setBtnSound}) {
+function Volume({
+  onToggleSound,
+  buttonsSound,
+  volumeLevel,
+  onVolumeChange,
+  setVolumeLevel,
+  setBtnSound,
+}) {
   const [stateBtn, setStateBtn] = useState("normal");
-
 
   useEffect(() => {
     if (volumeLevel < 1) {
       setStateBtn("mute");
-    } else if(volumeLevel > 1) {
+      setVolumeLevel(0);
+    } else if (volumeLevel > 1) {
       setStateBtn("normal");
     }
   }, [volumeLevel]);
-
 
   const handleMouseDown = () => {
     if (stateBtn === "mute") {
@@ -26,6 +32,8 @@ function Volume({ onToggleSound, buttonsSound, volumeLevel, onVolumeChange, setV
   const handleMouseUp = () => {
     if (stateBtn === "mute-pressed") {
       setStateBtn("normal");
+      setVolumeLevel(50);
+      setBtnSound(false);
     } else {
       setStateBtn("mute");
     }
