@@ -61,6 +61,7 @@ function Volume({
         ></button>
       </div>
       <div className="box-btn-input-volume">
+        <p>{volumeLevel}</p>
         <img src="./assets/volume-bar.svg" alt="volume-bar" />
         <div className="volume-shape">
           <input

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import audio from "../utils/audio.js";
 
-function Buttons({ buttonsSound ,volumeLevel}) {
+function Buttons({ buttonsSound, volumeLevel }) {
   const [isPressed, setIsPressed] = useState(null);
 
   const imagesBtn = [
@@ -29,11 +29,10 @@ function Buttons({ buttonsSound ,volumeLevel}) {
 
   const handleMouseDown = (index) => {
     setIsPressed(index);
-    if(buttonsSound && volumeLevel > 1){
-      audio.volume = volumeLevel/100
-      audio.play()
-     
-    };
+    if (buttonsSound && volumeLevel > 1) {
+      audio.volume = volumeLevel / 100;
+      audio.play();
+    }
   };
 
   const handleMouseUp = () => {
