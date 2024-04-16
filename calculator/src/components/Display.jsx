@@ -1,21 +1,17 @@
-
-
-function Display(){
-return(
+function Display({ result, calculation }) {
+  return (
     <>
-     <div id="display">
-
-     </div>
+      <div id="display">
+        <p>
+          {result ? <span>({result})</span> : ""}
+          {calculation || "0"}
+        </p>
+      </div>
     </>
-)
+  );
 }
 
-
-
-
-export default Display
-
-
+export default Display;
 
 // https://reactjsexample.com/a-simple-digital-calculator-with-pixel-art-style/
 

@@ -5,7 +5,6 @@
 }
 
 @mixin responsive($breakpoint) {
- 
   @if $breakpoint == smartphone-landscape {
     @media only screen and (max-width: 767.98px) {
       @content;
@@ -157,19 +156,19 @@ a {
   flex-direction: column;
   @include Centered;
   justify-content: space-between;
-  @include responsive(tablet){
+  @include responsive(tablet) {
     width: 275px;
     height: 364px;
     padding: 30px;
   }
-  @include responsive(smartphone-landscape){
+  @include responsive(smartphone-landscape) {
     width: 220px;
     height: 291px;
     padding: 25px;
   }
 
-
-
+  // Adddddeeeeeeeeddddddddd @include centered temporary
+  // adadasdsa Be carefulllll
 
   #display {
     width: 100%;
@@ -185,6 +184,8 @@ a {
     @include responsive(smartphone-landscape) {
       height: 50px;
     }
+
+    @include Centered;
   }
 
   .buttons {
@@ -194,13 +195,12 @@ a {
     gap: 10px 10px;
 
     @include responsive(tablet) {
-      gap: 8px 8px
+      gap: 8px 8px;
     }
     @include responsive(smartphone-landscape) {
-      gap: 6px 6px
+      gap: 6px 6px;
     }
 
-  
     .button {
       width: 54px;
       height: 50px;
@@ -209,26 +209,26 @@ a {
       background-size: 108px 48px !important;
       background-position: 0px 0px !important;
       cursor: pointer;
-  
+
       &:active {
         background-position: -54px 0px !important;
       }
-      
+
       @include responsive(tablet) {
         width: 46px;
         height: 41px;
         background-size: 92px 41px !important;
-  
+
         &:active {
           background-position: -46px 0px !important;
         }
       }
-  
+
       @include responsive(smartphone-landscape) {
         width: 38px;
         height: 32px;
         background-size: 77px 32px !important;
-        
+
         &:active {
           background-position: -39px 0px !important;
         }

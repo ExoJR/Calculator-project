@@ -56,8 +56,6 @@ function Volume({
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseLeave}
-          onTouchStart={handleMouseDown}
-          onTouchEnd={handleMouseUp}
         ></button>
       </div>
       <div className="box-btn-input-volume">
