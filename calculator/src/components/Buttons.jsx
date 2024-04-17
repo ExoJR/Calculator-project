@@ -1,7 +1,7 @@
 import { useState } from "react";
 import audio from "../utils/audio.js";
 
-function Buttons({ buttonsSound, volumeLevel, updateCalc }) {
+function Buttons({ buttonsSound, volumeLevel, updateCalc}) {
   const [isPressed, setIsPressed] = useState(null);
 
   const imagesBtn = [
@@ -44,7 +44,7 @@ function Buttons({ buttonsSound, volumeLevel, updateCalc }) {
       {imagesBtn.map((image, index) => (
         <li
           key={index}
-          id={`btn-${index}`}
+          id={`btn-${image.sign}`}
           className="button"
           style={{
             background: `url(/assets/${image.src})`,

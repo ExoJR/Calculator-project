@@ -13,6 +13,8 @@ function App() {
   const ops = ["+", "-", "*", "/", "."];
 
   const updateCalc = (value) => {
+
+
     if (
       (ops.includes(value) && calc === "") ||
       (ops.includes(value) && ops.includes(calc.slice(-1)))
@@ -20,17 +22,42 @@ function App() {
       return;
     }
 
-    if(!ops.includes(value) && value === '^' &&  calc !== '^'){
-      setResult(Math.sqrt(calc).toFixed(2))
+    if (!ops.includes(value) && value === "^") {
+      if (calc !== "") {
+        console.log(value,calc,result)
+        const sqrtResult = Math.sqrt(eval(calc));
+        setCalc(sqrtResult.toString());
+        setResult(sqrtResult.toString());
+      }
+      return;
+    }
+    
+    if (!ops.includes(value) && value === "=" && calc !== "=") {
+      handleCalculation();
+      return value;
     }
 
-    setCalc(calc + value);
-
-    if(!ops.includes(value)){
-      setResult(eval(calc + value).toString())
+    if(value === "c"){
+      deleteResult()
+      return value;
     }
 
+    setCalc((prevCalc) => prevCalc + value);
+    setResult((prevCalc) => prevCalc + value)
+    console.log(value,calc,result)
   };
+
+  const deleteResult = ()=>{
+    setCalc('');
+    setResult('')
+  }
+
+  const handleCalculation = () =>{
+    const finalResult = eval(calc);
+    console.log(calc)
+    setCalc(finalResult.toString())
+    setResult(finalResult.toString());
+  }
 
   const toggleSound = () => {
     setBtnSound((prevState) => !prevState);
