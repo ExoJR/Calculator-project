@@ -13,51 +13,73 @@ function App() {
   const ops = ["+", "-", "*", "/", "."];
 
   const updateCalc = (value) => {
+    console.log("updateCalc is called with value:", value);
+    console.log("Current value of calc:", calc);
+    console.log("Current value of result:", calc.length);
 
+    const dublicateOps = ["+", "-", "*", "/"];
+
+    if (ops.includes(value) && calc === "") {
+      return;
+    } else if (ops.includes(value) && ops.includes(calc.slice(-1))) {
+      if (value === "." && ops.includes(calc.slice(-1))) {
+        setResult("0");
+        setCalc("0");
+      }else {
+        setCalc(calc.slice(0, -1) + value);
+        console.log(calc);
+        return;
+      }
+    } else if (value === "0" && calc === "0") {
+      setCalc(value);
+      return;
+    }else if (calc.length === 3 && calc.includes('.') && value === '.') {
+      setResult("0");
+      setCalc("0");
+    }
 
     if (
-      (ops.includes(value) && calc === "") ||
-      (ops.includes(value) && ops.includes(calc.slice(-1)))
+      dublicateOps.some((op) => calc.includes(op)) &&
+      dublicateOps.includes(value)
     ) {
-      return;
+      handleCalculation();
     }
 
     if (!ops.includes(value) && value === "^") {
+      console.log(value, calc, result);
       if (calc !== "") {
-        console.log(value,calc,result)
         const sqrtResult = Math.sqrt(eval(calc));
         setCalc(sqrtResult.toString());
         setResult(sqrtResult.toString());
       }
       return;
     }
-    
+
     if (!ops.includes(value) && value === "=" && calc !== "=") {
       handleCalculation();
       return value;
     }
 
-    if(value === "c"){
-      deleteResult()
+    if (value === "c") {
+      deleteResult();
       return value;
     }
 
     setCalc((prevCalc) => prevCalc + value);
-    setResult((prevCalc) => prevCalc + value)
-    console.log(value,calc,result)
+    setResult((prevResult) => prevResult + value);
   };
 
-  const deleteResult = ()=>{
-    setCalc('');
-    setResult('')
-  }
+  const deleteResult = () => {
+    setCalc("");
+    setResult("");
+  };
 
-  const handleCalculation = () =>{
+  const handleCalculation = () => {
     const finalResult = eval(calc);
-    console.log(calc)
-    setCalc(finalResult.toString())
+    console.log(calc);
+    setCalc(finalResult.toString());
     setResult(finalResult.toString());
-  }
+  };
 
   const toggleSound = () => {
     setBtnSound((prevState) => !prevState);
