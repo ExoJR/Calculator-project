@@ -78,7 +78,7 @@ function App() {
     }
 
     if (value === "c") {
-      deleteResult();
+     clearResult();
       return value;
     }
 
@@ -87,14 +87,48 @@ function App() {
     }
 
 
+    if (value === "+-") {
+      pozitiveOrNegative()
+      return
+    }
+
+    if (value === "ce") {
+      clearEntryResult()
+      return
+    }
+
     setCalc((prevCalc) => prevCalc + value);
     setResult((prevResult) => prevResult + value);
   };
 
-  const deleteResult = () => {
+  const clearResult = () => {
     setCalc("");
     setResult("");
   };
+
+  // Aici ai ramasasdadadasdsadasadsadsdasdsaasdasdasddsasdaadsdasasdasdsdasadsadsadadsasasdsda
+
+  const clearEntryResult = () =>{
+    if(calc === '' || calc === '0'){
+      return
+    }else if(calc.split('').some(char => {isNumber.test(char)}) && !ops.some(op=> calc.includes(op))){
+      setCalc("0")
+    }else {
+      const lastNumIndex = calc.split('').reverse().findIndex(char => !isNumber.test(char));
+      setCalc(calc.slice(0, calc.length - lastNumIndex - 1));
+      setResult(result.slice(0, result.length - lastNumIndex - 1));
+    }
+  }
+
+  const pozitiveOrNegative = ()=>{
+    if(calc.slice(0,1) === '-'){
+      setCalc((prevCalc)=> prevCalc.substring(1))
+      
+    }else{
+      setCalc(prevCalc => `-` + prevCalc)
+      
+    }
+  }
 
   const handleCalculation = () => {
     let finalResult;
