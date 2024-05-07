@@ -8,45 +8,35 @@ function App() {
   const [btnSound, setBtnSound] = useState(true);
   const [volumeLevel, setVolumeLevel] = useState(50);
   const [calc, setCalc] = useState("");
-  const [result, setResult] = useState("");
 
   const ops = ["+", "-", "*", "/", "."];
   const isNumber = /^[0-9]$/;
+  const dublicateOps = ["+", "-", "*", "/"];
 
   const updateCalc = (value) => {
-    console.log("updateCalc is called with value:", value);
-    console.log("Current value of calc:", calc);
-    console.log("Current value of result:", calc.length);
-
-    const dublicateOps = ["+", "-", "*", "/"];
-
     if (ops.includes(value) && calc === "") {
       return;
     } else if (ops.includes(value) && ops.includes(calc.slice(-1))) {
       if (value === "." && ops.includes(calc.slice(-1))) {
-        setResult("0");
         setCalc("0");
       } else {
         setCalc(calc.slice(0, -1) + value);
-        console.log(calc);
+
         return;
       }
     } else if (value === "0" && calc === "0") {
       setCalc(value);
+
       return;
-    } else if (
-      !dublicateOps.some((op) => calc.includes(op)) &&
-      calc.includes(".") &&
-      value === "."
-    ) {
-      return;
-    } else if (
-      dublicateOps.some((op) => calc.includes(op)) &&
-      calc.includes(".") &&
-      value === "." &&
-      calc.split(".").length - 1 >= 2
-    ) {
-      return;
+    } else if (value === ".") {
+      let lastNum = calc.split(/[\+\-\*\/]/).pop();
+      if (lastNum.includes(".")) {
+        return;
+      } else {
+        setCalc(calc + value);
+
+        return;
+      }
     }
 
     if (
@@ -57,19 +47,47 @@ function App() {
     }
 
     if (!ops.includes(value) && value === "^") {
-      console.log(value, calc, result);
       if (calc !== "") {
         if (dublicateOps.some((op) => calc.slice(-1) === op)) {
           const sqrtResult = Math.sqrt(eval(calc.slice(0, -1)));
-          setCalc(sqrtResult.toString());
-          setResult(sqrtResult.toString());
+          const resultString = sqrtResult.toString();
+          setCalc(
+            resultString.length > 8
+              ? resultString.substring(0, 9)
+              : resultString
+          );
         } else {
           const sqrtResult = Math.sqrt(eval(calc));
-          setCalc(sqrtResult.toString());
-          setResult(sqrtResult.toString());
+          const resultString = sqrtResult.toString();
+          setCalc(
+            resultString.length > 8
+              ? resultString.substring(0, 9)
+              : resultString
+          );
         }
       }
       return;
+    }
+
+    if (calc.length > 7 && isNumber.test(value)) {
+      let lastNum = calc.split(/[\+\-\*\/]/).pop();
+
+      if (lastNum.length === 8 && !calc.includes(".")) {
+        return;
+      } else if (lastNum.length === 9 && calc.includes(".")) {
+        return;
+      }
+    }
+
+    if (value === "0") {
+      let lastNum = calc.split(/[\+\-\*\/]/).pop();
+      if (lastNum === "0.0" || lastNum === "0") {
+        return;
+      } else {
+        setCalc(calc + value);
+
+        return;
+      }
     }
 
     if (!ops.includes(value) && value === "=" && calc !== "=") {
@@ -78,57 +96,67 @@ function App() {
     }
 
     if (value === "c") {
-     clearResult();
+      clearResult();
       return value;
     }
 
-    if (isNumber.test(value) && calc.slice(-1) === "0") {
+    if (value === "+-") {
+      pozitiveOrNegative();
       return;
     }
 
-
-    if (value === "+-") {
-      pozitiveOrNegative()
-      return
+    if (value === "ce") {
+      clearEntryResult();
+      return;
     }
 
-    if (value === "ce") {
-      clearEntryResult()
-      return
+    if (calc === "0" && isNumber.test(value)) {
+      setCalc(calc.slice(0, -1));
+    }
+
+    if (
+      calc.endsWith("+0") ||
+      calc.endsWith("-0") ||
+      calc.endsWith("*0") ||
+      calc.endsWith("/0")
+    ) {
+      if (isNumber.test(value)) {
+        setCalc(calc.slice(0, -1));
+      }
     }
 
     setCalc((prevCalc) => prevCalc + value);
-    setResult((prevResult) => prevResult + value);
   };
 
   const clearResult = () => {
     setCalc("");
-    setResult("");
   };
 
-  // Aici ai ramasasdadadasdsadasadsadsdasdsaasdasdasddsasdaadsdasasdasdsdasadsadsadadsasasdsda
-
-  const clearEntryResult = () =>{
-    if(calc === '' || calc === '0'){
-      return
-    }else if(calc.split('').some(char => {isNumber.test(char)}) && !ops.some(op=> calc.includes(op))){
-      setCalc("0")
-    }else {
-      const lastNumIndex = calc.split('').reverse().findIndex(char => !isNumber.test(char));
+  const clearEntryResult = () => {
+    if (calc === "" || calc === "0") {
+      return;
+    } else if (
+      calc.split("").some((char) => isNumber.test(char)) &&
+      !dublicateOps.some((op) => calc.includes(op))
+    ) {
+      setCalc("");
+    } else {
+      const lastNumIndex = calc
+        .split("")
+        .reverse()
+        .findIndex((char) => dublicateOps.includes(char));
       setCalc(calc.slice(0, calc.length - lastNumIndex - 1));
       setResult(result.slice(0, result.length - lastNumIndex - 1));
     }
-  }
+  };
 
-  const pozitiveOrNegative = ()=>{
-    if(calc.slice(0,1) === '-'){
-      setCalc((prevCalc)=> prevCalc.substring(1))
-      
-    }else{
-      setCalc(prevCalc => `-` + prevCalc)
-      
+  const pozitiveOrNegative = () => {
+    if (calc.slice(0, 1) === "-") {
+      setCalc((prevCalc) => prevCalc.substring(1));
+    } else {
+      setCalc((prevCalc) => `-` + prevCalc);
     }
-  }
+  };
 
   const handleCalculation = () => {
     let finalResult;
@@ -139,9 +167,12 @@ function App() {
     }
 
     const resultString = finalResult.toString();
-    setCalc(resultString);
-    setResult(resultString);
-    console.log(calc);
+
+    if (resultString.length > 8) {
+      setCalc(finalResult.toExponential(4).replace("+", "").toString());
+    } else {
+      setCalc(resultString);
+    }
   };
 
   const toggleSound = () => {
@@ -168,7 +199,7 @@ function App() {
       <main>
         <div id="calculator-wrapper">
           <div id="calculator">
-            <Display result={result} calculation={calc} />
+            <Display calculation={calc} />
             <Buttons
               updateCalc={updateCalc}
               buttonsSound={btnSound}

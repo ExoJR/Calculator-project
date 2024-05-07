@@ -1,9 +1,8 @@
-function Display({ result, calculation }) {
+function Display({calculation }) {
   return (
     <>
       <div id="display">
         <p>
-          {result ? <span>({result})</span> : ""}
           {calculation || "0"}
         </p>
       </div>
