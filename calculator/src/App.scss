@@ -185,6 +185,448 @@ a {
     @include Centered;
   }
 
+  .fade-in-out {
+    width: 100%;
+    height: 74px;
+    opacity: 0;
+    transition: opacity 0.1s ease-in-out;
+  }
+
+  .fade-in-out.visible {
+    opacity: 1;
+  }
+
+  .rezult {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+    height: 74px;
+    column-gap: 0.7px;
+    padding: 0 14px 2px 0;
+    position: relative;
+
+    @include responsive(tablet) {
+      column-gap: 2.3px;
+      padding: 0 12px 1px 0;
+    }
+    @include responsive(smartphone-landscape) {
+      padding: 0 9px 4px 0;
+      column-gap: 0.85px;
+    }
+  }
+
+  .number-0 {
+    position: relative;
+    background: url("../assets/numbers-sprite.png") -20px 0px;
+    background-size: 1200%;
+    width: 27px;
+    height: 52px;
+
+    @include responsive(tablet) {
+      position: relative;
+      background: url("../assets/numbers-sprite.png") -18px 0px;
+      background-size: 1300%;
+      width: 20px;
+      height: 42px;
+    }
+    @include responsive(smartphone-landscape) {
+      background: url("../assets/numbers-sprite.png") -14.2px 0px;
+      background-size: 1250%;
+      width: 17px;
+      height: 34px;
+      padding: 1px 1px 1px 1px;
+      background-clip: content-box;
+    }
+  }
+
+  .number-1 {
+    position: relative;
+    background: url("../assets/numbers-sprite.png") -45px -1px;
+    background-size: 1200%;
+    width: 27px;
+    height: 52px;
+    padding: 1px 2px 1px 2px;
+    background-clip: content-box;
+
+    @include responsive(tablet) {
+      position: relative;
+      background: url("../assets/numbers-sprite.png") -36px 1px;
+      background-size: 1300%;
+      padding: 4px 0.5px 0 2px;
+      background-clip: content-box;
+      width: 20px;
+      height: 42px;
+    }
+    @include responsive(smartphone-landscape) {
+      background: url("../assets/numbers-sprite.png") -27px 0.5px;
+      background-size: 1200%;
+      width: 17px;
+      height: 34px;
+      padding: 0 0 0 3px;
+      background-clip: content-box;
+    }
+  }
+
+  .number-2 {
+    position: relative;
+    background: url("../assets/numbers-sprite.png") -69px 0px;
+    background-size: 1200%;
+    width: 27px;
+    height: 52px;
+    padding: 1px 1px 1px 1px;
+    background-clip: content-box;
+
+    @include responsive(tablet) {
+      position: relative;
+      background: url("../assets/numbers-sprite.png") -56px 0px;
+      background-size: 1300%;
+      width: 20px;
+      height: 42px;
+    }
+    @include responsive(smartphone-landscape) {
+      background: url("../assets/numbers-sprite.png") -42px 0.5px;
+      background-size: 1200%;
+      width: 17px;
+      height: 34px;
+      padding: 1px 0 1px 2px;
+      background-clip: content-box;
+    }
+  }
+
+  .number-3 {
+    position: relative;
+    background: url("../assets/numbers-sprite.png") -89px 0px;
+    background-size: 1200%;
+    width: 27px;
+    height: 52px;
+    padding: 1px 1px 1px 4px;
+    background-clip: content-box;
+
+    @include responsive(tablet) {
+      position: relative;
+      background: url("../assets/numbers-sprite.png") -77.2px -0.5px;
+      background-size: 1350%;
+      width: 20px;
+      height: 42px;
+    }
+    @include responsive(smartphone-landscape) {
+      background: url("../assets/numbers-sprite.png") -56px 0.5px;
+      background-size: 1200%;
+      width: 17px;
+      height: 34px;
+      padding: 1px 0 1px 3px;
+      background-clip: content-box;
+    }
+  }
+
+  .number-4 {
+    position: relative;
+    background: url("../assets/numbers-sprite.png") -113px 0px;
+    background-size: 1200%;
+    width: 27px;
+    height: 52px;
+    padding: 1px 1px 1px 3px;
+    background-clip: content-box;
+
+    @include responsive(tablet) {
+      position: relative;
+      background: url("../assets/numbers-sprite.png") -97.9px -1px;
+      background-size: 1370%;
+      width: 20px;
+      height: 42px;
+    }
+    @include responsive(smartphone-landscape) {
+      background: url("../assets/numbers-sprite.png") -73.5px 0.5px;
+      background-size: 1225%;
+      width: 17px;
+      height: 34px;
+      padding: 0 1px 0 1px;
+      background-clip: content-box;
+    }
+  }
+
+  .number-5 {
+    position: relative;
+    background: url("../assets/numbers-sprite.png") -137px 0px;
+    background-size: 1200%;
+    width: 27px;
+    height: 52px;
+    padding: 1px 2px 1px 2px;
+    background-clip: content-box;
+
+    @include responsive(tablet) {
+      position: relative;
+      background: url("../assets/numbers-sprite.png") -119px -1.3px;
+      background-size: 1389%;
+      width: 20px;
+      height: 42px;
+    }
+    @include responsive(smartphone-landscape) {
+      background: url("../assets/numbers-sprite.png") -88px 0px;
+      background-size: 1230%;
+      width: 17px;
+      height: 34px;
+      padding: 1px 1px 1px 2px;
+      background-clip: content-box;
+    }
+  }
+
+  .number-6 {
+    position: relative;
+    background: url("../assets/numbers-sprite.png") -160px 0px;
+    background-size: 1200%;
+    width: 27px;
+    height: 52px;
+    padding: 1px 2px 1px 2px;
+    background-clip: content-box;
+
+    @include responsive(tablet) {
+      position: relative;
+      background: url("../assets/numbers-sprite.png") -126.3px 0px;
+      background-size: 1280%;
+      width: 20px;
+      height: 42px;
+    }
+    @include responsive(smartphone-landscape) {
+      background: url("../assets/numbers-sprite.png") -103px 0px;
+      background-size: 1230%;
+      width: 17px;
+      height: 34px;
+      padding: 1px 1px 1px 2px;
+      background-clip: content-box;
+    }
+  }
+
+  .number-7 {
+    position: relative;
+    background: url("../assets/numbers-sprite.png") -183px 0px;
+    background-size: 1200%;
+    width: 27px;
+    height: 52px;
+    padding: 1px 2px 1px 2px;
+    background-clip: content-box;
+
+    @include responsive(tablet) {
+      position: relative;
+      background: url("../assets/numbers-sprite.png") -155.5px -1px;
+      background-size: 1360%;
+      width: 20px;
+      height: 42px;
+    }
+    @include responsive(smartphone-landscape) {
+      background: url("../assets/numbers-sprite.png") -118px 0px;
+      background-size: 1230%;
+      width: 17px;
+      height: 34px;
+      padding: 1px 1px 1px 2px;
+      background-clip: content-box;
+    }
+  }
+
+  .number-8 {
+    position: relative;
+    background: url("../assets/numbers-sprite.png") -206px 0px;
+    background-size: 1200%;
+    width: 27px;
+    height: 52px;
+    padding: 1px 2px 1px 2px;
+    background-clip: content-box;
+
+    @include responsive(tablet) {
+      position: relative;
+      background: url("../assets/numbers-sprite.png") -166.5px -0.5px;
+      background-size: 1300%;
+      width: 20px;
+      height: 42px;
+    }
+    @include responsive(smartphone-landscape) {
+      background: url("../assets/numbers-sprite.png") -132.9px 0px;
+      background-size: 1230%;
+      width: 17px;
+      height: 34px;
+      padding: 1px 1px 1px 2px;
+      background-clip: content-box;
+    }
+  }
+
+  .number-9 {
+    position: relative;
+    background: url("../assets/numbers-sprite.png") -229px 0px;
+    background-size: 1200%;
+    width: 27px;
+    height: 52px;
+    padding: 1px 2px 1px 2.5px;
+    background-clip: content-box;
+
+    @include responsive(tablet) {
+      position: relative;
+      background: url("../assets/numbers-sprite.png") -195.7px -1.5px;
+      background-size: 1370%;
+      width: 20px;
+      height: 42px;
+    }
+    @include responsive(smartphone-landscape) {
+      background: url("../assets/numbers-sprite.png") -147.5px 0px;
+      background-size: 1230%;
+      width: 17px;
+      height: 34px;
+      padding: 1px 1px 1px 2px;
+      background-clip: content-box;
+    }
+  }
+
+  .number-e {
+    position: relative;
+    background: url("../assets/numbers-sprite.png") -252px 0px;
+    background-size: 1200%;
+    width: 27px;
+    height: 52px;
+    padding: 1px 2px 1px 2px;
+    background-clip: content-box;
+
+    @include responsive(tablet) {
+      position: relative;
+      background: url("../assets/numbers-sprite.png") -214px -1px;
+      background-size: 1370%;
+      width: 20px;
+      height: 42px;
+    }
+    @include responsive(smartphone-landscape) {
+      background: url("../assets/numbers-sprite.png") -162px 0px;
+      background-size: 1230%;
+      width: 17px;
+      height: 34px;
+      padding: 1px 1px 1px 2px;
+      background-clip: content-box;
+    }
+  }
+
+  .number-r {
+    position: relative;
+    background: url("../assets/numbers-sprite.png") -275.5px 0px;
+    background-size: 1200%;
+    width: 27px;
+    height: 52px;
+    padding: 1px 2px 1px 2px;
+    background-clip: content-box;
+
+    @include responsive(tablet) {
+      position: relative;
+      background: url("../assets/numbers-sprite.png") -235px -1px;
+      background-size: 1370%;
+      width: 20px;
+      height: 42px;
+    }
+    @include responsive(smartphone-landscape) {
+      background: url("../assets/numbers-sprite.png") -177.5px 0px;
+      background-size: 1230%;
+      width: 17px;
+      height: 34px;
+      padding: 1px 1px 1px 2px;
+      background-clip: content-box;
+    }
+  }
+
+  .number-o {
+    position: relative;
+    background: url("../assets/numbers-sprite.png") -20px 0px;
+    background-size: 1200%;
+    width: 27px;
+    height: 52px;
+
+    @include responsive(tablet) {
+      position: relative;
+      background: url("../assets/numbers-sprite.png") -18px 0px;
+      background-size: 1300%;
+      width: 20px;
+      height: 42px;
+    }
+    @include responsive(smartphone-landscape) {
+      background: url("../assets/numbers-sprite.png") -14.2px 0px;
+      background-size: 1250%;
+      width: 17px;
+      height: 34px;
+      padding: 1px 1px 1px 1px;
+      background-clip: content-box;
+    }
+  }
+
+  .number-N {
+    display: none;
+  }
+
+  .number-a {
+    display: none;
+  }
+
+  .number-dot {
+    z-index: 10;
+    background: black;
+    width: 6px;
+    height: 6px;
+    position: absolute;
+    bottom: -10px;
+    left: 0px;
+
+    @include responsive(tablet) {
+      z-index: 10;
+      background: black;
+      width: 5px;
+      height: 5px;
+      position: absolute;
+      bottom: -5px;
+      left: 0px;
+    }
+    @include responsive(smartphone-landscape) {
+      z-index: 10;
+      background: black;
+      width: 4px;
+      height: 4px;
+      position: absolute;
+      bottom: -1px;
+      left: 0px;
+    }
+  }
+
+  .number-exo {
+    position: relative;
+    top: 16.3px;
+    right: 2px;
+  }
+
+  .negative-start {
+    background: url("../assets/minus-show.png");
+    background-size: 100%;
+    position: absolute;
+    left: 5px;
+    width: 23px;
+    height: 65%;
+    top: 10px;
+
+    @include responsive(tablet) {
+      background: url("../assets/minus-show.png");
+      background-size: 95%;
+      position: absolute;
+      left: 4px;
+      width: 20px;
+      height: 65%;
+      top: 15px;
+    }
+    @include responsive(smartphone-landscape) {
+      background: url("../assets/minus-show.png");
+      background-size: 83%;
+      position: absolute;
+      left: 3px;
+      width: 18px;
+      height: 65%;
+      top: 18px;
+      padding: 4px 1px 4px 1px;
+      background-clip: content-box;
+    }
+  }
+
   .buttons {
     @include Centered;
     justify-content: space-between;

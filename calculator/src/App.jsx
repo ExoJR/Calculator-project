@@ -1,3 +1,7 @@
+//Inspired by: ==>> https://reactjsexample.com/a-simple-digital-calculator-with-pixel-art-style/
+
+// https://github.com/ExoJR/Calculator-project.git
+
 import Display from "./components/Display";
 import Buttons from "./components/Buttons";
 import "./App.scss";
@@ -7,7 +11,7 @@ import { useState } from "react";
 function App() {
   const [btnSound, setBtnSound] = useState(true);
   const [volumeLevel, setVolumeLevel] = useState(50);
-  const [calc, setCalc] = useState("");
+  const [calc, setCalc] = useState("0");
 
   const ops = ["+", "-", "*", "/", "."];
   const isNumber = /^[0-9]$/;
@@ -21,20 +25,17 @@ function App() {
         setCalc("0");
       } else {
         setCalc(calc.slice(0, -1) + value);
-
         return;
       }
     } else if (value === "0" && calc === "0") {
       setCalc(value);
-
       return;
     } else if (value === ".") {
       let lastNum = calc.split(/[\+\-\*\/]/).pop();
       if (lastNum.includes(".")) {
         return;
       } else {
-        setCalc(calc + value);
-
+        !calc.includes("NaN") ? setCalc(calc + value) : setCalc("NaN");
         return;
       }
     }
@@ -44,6 +45,19 @@ function App() {
       dublicateOps.includes(value)
     ) {
       handleCalculation();
+    }
+
+    if (value === "c") {
+      clearResult();
+      return value;
+    }
+
+    if (calc.includes("e")) {
+      return;
+    }
+
+    if (calc.includes("NaN")) {
+      return;
     }
 
     if (!ops.includes(value) && value === "^") {
@@ -95,11 +109,6 @@ function App() {
       return value;
     }
 
-    if (value === "c") {
-      clearResult();
-      return value;
-    }
-
     if (value === "+-") {
       pozitiveOrNegative();
       return;
@@ -129,24 +138,21 @@ function App() {
   };
 
   const clearResult = () => {
-    setCalc("");
+    setCalc("0");
   };
 
   const clearEntryResult = () => {
+    const lastNumIndex = calc
+      .split("")
+      .reverse()
+      .findIndex((char) => dublicateOps.includes(char));
+
     if (calc === "" || calc === "0") {
       return;
-    } else if (
-      calc.split("").some((char) => isNumber.test(char)) &&
-      !dublicateOps.some((op) => calc.includes(op))
-    ) {
-      setCalc("");
+    } else if (lastNumIndex > 0) {
+      setCalc(calc.slice(0, calc.length - lastNumIndex));
     } else {
-      const lastNumIndex = calc
-        .split("")
-        .reverse()
-        .findIndex((char) => dublicateOps.includes(char));
-      setCalc(calc.slice(0, calc.length - lastNumIndex - 1));
-      setResult(result.slice(0, result.length - lastNumIndex - 1));
+      setCalc("0");
     }
   };
 
@@ -168,10 +174,36 @@ function App() {
 
     const resultString = finalResult.toString();
 
-    if (resultString.length > 8) {
+    if (
+      resultString.length > 8 &&
+      !resultString.includes(".") &&
+      !resultString.startsWith("-")
+    ) {
       setCalc(finalResult.toExponential(4).replace("+", "").toString());
-    } else {
+    } else if (
+      resultString.length > 9 &&
+      resultString.includes(".") &&
+      calc >= 1
+    ) {
+      setCalc(finalResult.toExponential(4).replace("+", "").toString());
+    } else if (
+      resultString.length > 8 &&
+      resultString <= 1 &&
+      !resultString.startsWith("-")
+    ) {
+      setCalc(resultString.substring(0, 9));
+    } else if (
+      resultString.length == 10 &&
+      resultString.startsWith("-") &&
+      resultString.includes(".")
+    ) {
       setCalc(resultString);
+    } else if (resultString.length > 9 && resultString.startsWith("-")) {
+      setCalc(resultString.substring(0, 9));
+    } else {
+      !resultString.includes(".") && !resultString.startsWith("-")
+        ? setCalc(resultString.substring(0, 8))
+        : setCalc(resultString.substring(0, 9));
     }
   };
 
