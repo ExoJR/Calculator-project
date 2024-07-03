@@ -56,6 +56,9 @@ function Volume({
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseLeave}
+          placeholder="volumebutton"
+          aria-label="volumebutton"
+          title="volumebutton"
         ></button>
       </div>
       <div className="box-btn-input-volume">
@@ -70,6 +73,9 @@ function Volume({
             max={100}
             onChange={onVolumeChange}
             style={{ backgroundSize: volumeLevel + "%" }}
+            placeholder="rangeinputvolume"
+            aria-label="rangeinputvolume"
+            title="rangeinputvolume"
           />
         </div>
       </div>

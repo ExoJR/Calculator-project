@@ -11,8 +11,7 @@ const FadeInOutAnimation = ({ children, calculation }) => {
     return () => clearTimeout(timer);
   }, [calculation]);
 
-  const handleAnimationEnd = () => {
-  };
+  const handleAnimationEnd = () => {};
 
   return (
     <div
